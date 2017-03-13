@@ -12,11 +12,12 @@ public class VoteCountingImplTest {
 	public void init() {
 		voteCountingImpl = new VoteCountingImpl();
 	}
-	//protected long getVoteCount(long totalVote, int votePercentage) {
 	
 	@Test
 	public void getVoteCount_HappyPath() {
 		long voteCount = voteCountingImpl.getVoteCount(100, 25);
 		Assert.assertEquals(25, voteCount);
 	}
+	
+	
 }

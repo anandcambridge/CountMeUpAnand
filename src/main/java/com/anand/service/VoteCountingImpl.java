@@ -3,6 +3,7 @@ package com.anand.service;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.anand.domain.VotingResult;
@@ -11,23 +12,17 @@ import com.anand.domain.VotingResultInput;
 @Service
 public class VoteCountingImpl implements IVoteCounting {
 
-	private static final int THREAD_POOL_COUNT = 5;
+	@Value("${thread.pool.count}")
+	private int threadPoolCount;
 	
 	@Override
 	public VotingResult countVoting(VotingResultInput votingResultInput) {
-//		long totalVote = votingResultInput.getTotalVote();
-//		int votePercentageCandidate1 = votingResultInput.getVotePercentageCandidate1();
-		
 		VotingResult result = new VotingResult();
-		ExecutorService executorService = Executors.newFixedThreadPool(THREAD_POOL_COUNT);
+		System.out.println("Thread pool count:" + threadPoolCount);
+		ExecutorService executorService = Executors.newFixedThreadPool(threadPoolCount);
 		for (int i=1; i<=5; i++) {
 			executorService.execute(new CandiateVoteCount(votingResultInput, result, i));
 		}
-		/*calculateCandiateVoteCount(votingResultInput, result, 1);
-		calculateCandiateVoteCount(votingResultInput, result, 2);
-		calculateCandiateVoteCount(votingResultInput, result, 3);
-		calculateCandiateVoteCount(votingResultInput, result, 4);
-		calculateCandiateVoteCount(votingResultInput, result, 5);*/
 		executorService.shutdown();
 		while (!executorService.isTerminated()) {
 			//wait until all tasks are completed
@@ -52,7 +47,9 @@ public class VoteCountingImpl implements IVoteCounting {
 		}
 		
 	}
-	private void calculateCandiateVoteCount(VotingResultInput votingResultInput, VotingResult result, int candiateIndex) {
+
+	private void calculateCandiateVoteCount(VotingResultInput votingResultInput, VotingResult result,
+			int candiateIndex) {
 		long totalVote = votingResultInput.getTotalVote();
 		switch (candiateIndex) {
 		case 1:
@@ -88,10 +85,11 @@ public class VoteCountingImpl implements IVoteCounting {
 
 	protected long getVoteCount(long totalVote, int votePercentage) {
 		long result = 0;
+		//validation
 		if (totalVote <= 0 || votePercentage <= 0) {
 			return result;
 		}
-		
+		//logic
 		result = (totalVote * votePercentage)/100;
 		return result;
 	}
