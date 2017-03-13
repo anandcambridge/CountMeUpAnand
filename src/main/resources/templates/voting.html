@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+<title>Insert title here</title>
+</head>
+<body>
+
+			<div id="root_id">
+			<table align="center" width="50%">
+			<form id="VotingForm">
+				<tr>
+				<td align="left" width="10%">Candidate 1:</td>
+				<td align="left" width="10%">Candidate 2:</td>
+				<td align="left" width="10%">Candidate 3:</td>
+				<td align="left" width="10%">Candidate 4:</td>
+				<td align="left" width="10%">Candidate 5:</td>
+				</tr>
+				<tr>
+				<td><input type="checkbox" id="chk_cd1_vote1" name="nmvote" class="clsVote">Vote1</input></td>
+				<td><input type="checkbox" id="chk_cd2_vote1" name="nmvote" class="clsVote">Vote1</input></td>
+				<td><input type="checkbox" id="chk_cd3_vote1" name="nmvote" class="clsVote">Vote1</input></td>
+				<td><input type="checkbox" id="chk_cd4_vote1" name="nmvote" class="clsVote">Vote1</input></td>
+				<td><input type="checkbox" id="chk_cd5_vote1" name="nmvote" class="clsVote">Vote1</input></td>
+				</tr>
+				<tr>
+				<td><input type="checkbox" id="chk_cd1_vote2" name="nmvote">Vote2</input></td>
+				<td><input type="checkbox" id="chk_cd2_vote2" name="nmvote">Vote2</input></td>
+				<td><input type="checkbox" id="chk_cd3_vote2" name="nmvote">Vote2</input></td>
+				<td><input type="checkbox" id="chk_cd4_vote2" name="nmvote">Vote2</input></td>
+				<td><input type="checkbox" id="chk_cd5_vote2" name="nmvote">Vote2</input></td>
+				</tr>
+				<tr>
+				<td><input type="checkbox" id="chk_cd1_vote3" name="nmvote">Vote3</input></td>
+				<td><input type="checkbox" id="chk_cd2_vote3" name="nmvote">Vote3</input></td>
+				<td><input type="checkbox" id="chk_cd3_vote3" name="nmvote">Vote3</input></td>
+				<td><input type="checkbox" id="chk_cd4_vote3" name="nmvote">Vote3</input></td>
+				<td><input type="checkbox" id="chk_cd5_vote3" name="nmvote">Vote3</input></td>
+				</tr>
+
+				<tr>
+				<td></td>
+				<td align="right"><input type="submit" value="Vote"/></td>
+				<td></td>
+				</tr>
+			</form>
+			</table>
+			</div>
+			
+			<script type="text/javascript"
+        		src="webjars/jquery/3.1.1/jquery.min.js"></script>
+
+			<script type="text/javascript" src="js/validate_vote.js"></script>
+			
+</body>
+</html>
